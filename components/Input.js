@@ -1,12 +1,12 @@
-import { TextInput, TouchableOpacity,Image } from 'react-native'
+import { TextInput, TouchableOpacity, Image } from 'react-native'
 import { styles } from '../Styles';
 import { useState, useEffect } from 'react';
 import { View, Text, Keyboard } from 'react-native';
 
-const Input = ({ keyboardOpen, setKeyboardOpen }) => {
-     let searchIcon = "../assets/images/search_icon.png";
+const Input = ({ datas, data, setData, keyboardOpen, setKeyboardOpen }) => {
 
-    const [number, onChangeNumber] = useState(null);
+
+    const [inputText, onChangeInputText] = useState(null);
 
     useEffect(() => {
         const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
@@ -22,18 +22,33 @@ const Input = ({ keyboardOpen, setKeyboardOpen }) => {
         };
     }, []);
 
+    useEffect(() => {
+        if (inputText == null || inputText == undefined || inputText == "") {
+            setData(datas)
+       
+        } else {
+            let array = []
+            datas.map((e) => {
+                if (e.message.toLowerCase().includes(inputText.toLowerCase())) {
+                    array[array.length] = e;
+                }
+            })
+            setData(array)
+         
+        }
+    }, [inputText])
+
+
     return (
         <View>
             <TextInput
                 style={styles.input}
-                onChangeText={onChangeNumber}
-                value={number}
+                onChangeText={onChangeInputText}
+                value={inputText}
+              
                 placeholder="Not Ara"
                 onSubmitEditing={Keyboard.dismiss} />
-
-            <TouchableOpacity style={styles.inputButton}>
-            <Image  style={styles.image} source={require(searchIcon)} />
-            </TouchableOpacity>
+         
         </View>
     )
 }
