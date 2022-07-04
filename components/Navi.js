@@ -1,29 +1,41 @@
 import { useState } from 'react'
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { styles } from '../Styles';
-const url = "../assets/images/delete-button.png";
 
-const Navi = ({style}) => {
-    const [login, setLogin] = useState(true);
-  
-    const handleLogin = () => {
-        if (login) {
-            setLogin(false)
+const deleteIcon = "../assets/images/delete-button.png";
+const addButtonIcon = "../assets/images/addicon.png";
+
+const Navi = ({ addOrDeleteIcon, setAddOrDeleteIcon, setNoteAdd, noteAdd, style }) => {
+
+    const handleAddOrDeleteIcon = () => {
+        if (addOrDeleteIcon) {
+            setAddOrDeleteIcon(false)
         } else {
-            setLogin(true);
+            setAddOrDeleteIcon(true);
         }
+    }
+    const addTextPage = () => {
+        setNoteAdd(true)
     }
     return (
         <View style={style}>
+
             <View>
-                <Text style={styles.naviBrand}>Not Defteri</Text>
+                <Text style={noteAdd? styles.naviBrandWithNoteAdd:styles.naviBrand}>Not Defteri</Text>
             </View>
-            <View>
-            <TouchableOpacity  onPress={handleLogin} style={styles.button}>
-                {login ? <Image  style={styles.image} source={require(url)} /> :
-                 <Text></Text>}
-            </TouchableOpacity>
-            </View>
+            {noteAdd ?
+                null
+                :
+                <View>
+                    <TouchableOpacity onPress={addOrDeleteIcon ? addTextPage : null} style={styles.naviButton}>
+                        {addOrDeleteIcon ? <Image style={styles.image} source={require(addButtonIcon)} /> :
+                            <Image style={styles.image} source={require(deleteIcon)} />}
+
+                    </TouchableOpacity>
+                </View>
+
+            }
+
         </View>
     )
 }
