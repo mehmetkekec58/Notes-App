@@ -33,8 +33,9 @@ const NoteAdd = ({ veri, setVeri, setNoteAdd, keyboardOpen, setKeyboardOpen }) =
         if(inputText == null || inputText==undefined|| inputText.length<=0){
             return;
         }
+        
         let array = veri;
-        array[array.length] = { id: generateId(array), message: inputText, color: randomColor() };
+        array[array==null || array==undefined ? 0 :array.length] = { id: generateId(array), message: inputText, color: randomColor() };
         setVeri(array)
         handleCancel();
     }
