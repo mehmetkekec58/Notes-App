@@ -1,18 +1,7 @@
 import React from 'react'
 import { Text, TouchableOpacity } from 'react-native'
-import { color } from '../contains/Colors';
 import { styles } from '../Styles';
-
-function substringText(text, number) {
-    return text.substring(0, number);
-}
-function selectCharacter(text) {
-    let number = 140
-    return text.length > number ? `${substringText(text, number)}...` : text
-}
-function randomColor() {
-    return color[Math.floor(Math.random() * color.length)]
-}
+import selectCharacter from '../helper/selectCharacterHelper';
 
 const Card = ({ item }) => {
 
