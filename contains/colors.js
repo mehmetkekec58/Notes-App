@@ -1,0 +1,1 @@
+export const COLOR_LIST = ['#FF0000','#00FFFF','yellow','#FF00FF','orange','#00FF00','#C0C0C0'];
