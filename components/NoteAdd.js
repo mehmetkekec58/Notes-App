@@ -30,6 +30,9 @@ const NoteAdd = ({ veri, setVeri, setNoteAdd, keyboardOpen, setKeyboardOpen }) =
         setNoteAdd(false)
     }
     const handleSave = () => {
+        if(inputText == null || inputText==undefined|| inputText.length<=0){
+            return;
+        }
         let array = veri;
         array[array.length] = { id: generateId(array), message: inputText, color: randomColor() };
         setVeri(array)
