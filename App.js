@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, ScrollView } from 'react-native';
 import Card from './components/Card';
 import Input from './components/Input';
 import Navi from './components/Navi';
 import NoteAdd from './components/NoteAdd';
 import { styles } from './Styles';
+import dataSort from './helper/dataSortHelper';
 
 const datas = [
   {
@@ -61,13 +62,7 @@ const datas = [
     color: 'yellow',
   },
 ]
-function dataSort(datas) {
-  let noteDatas = datas
-  noteDatas.sort(function (a, b) {
-    return b.id - a.id;
-  })
-  return noteDatas;
-}
+
 
 
 export default function App() {
@@ -76,10 +71,13 @@ export default function App() {
   const [data, setData] = useState(veri)
   const [noteAdd, setNoteAdd] = useState(false);
   const [keyboardOpen, setKeyboardOpen] = useState(undefined);
-
+  const [selectedId, setSelectedId] = useState([])
+useEffect(()=>{
+setData(veri);
+},[veri])
   return (
     <View style={styles.container}>
-      <Navi addOrDeleteIcon={addOrDeleteIcon} noteAdd={noteAdd} setAddOrDeleteIcon={setAddOrDeleteIcon} setNoteAdd={setNoteAdd} style={keyboardOpen ? styles.navigateStyleWithKeyboardOpen : styles.navigate} />
+      <Navi addOrDeleteIcon={addOrDeleteIcon} veri={veri} setVeri={setVeri} selectedId={selectedId} setSelectedId={setSelectedId} noteAdd={noteAdd} setAddOrDeleteIcon={setAddOrDeleteIcon} setNoteAdd={setNoteAdd} style={keyboardOpen ? styles.navigateStyleWithKeyboardOpen : styles.navigate} />
 
       {noteAdd ?
         <NoteAdd veri={veri} setVeri={setVeri} setNoteAdd={setNoteAdd} setKeyboardOpen={setKeyboardOpen} />
@@ -94,7 +92,7 @@ export default function App() {
               marginTop: 20,
             }}>
               {dataSort(data).map((item) => (
-                <Card key={item.id} item={item} />
+                <Card setSelectedId={setSelectedId} selectedId={selectedId} addOrDeleteIcon={addOrDeleteIcon} setAddOrDeleteIcon={setAddOrDeleteIcon} key={item.id} item={item} />
               ))}
             </View>
           </ScrollView>
@@ -102,7 +100,7 @@ export default function App() {
 
         )
       }
-      <StatusBar style="auto" />
+      <StatusBar style="auto" backgroundColor='#2b90c7'/>
     </View>
 
   );
