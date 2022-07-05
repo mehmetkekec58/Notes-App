@@ -7,6 +7,7 @@ import Navi from './components/Navi';
 import NoteAdd from './components/NoteAdd';
 import { styles } from './Styles';
 import dataSort from './helper/dataSortHelper';
+import NoNote from './components/NoNote';
 
 const datas = [
   {
@@ -66,41 +67,47 @@ const datas = [
 
 
 export default function App() {
+
   const [veri, setVeri] = useState(datas)
   const [addOrDeleteIcon, setAddOrDeleteIcon] = useState(true);
   const [data, setData] = useState(veri)
   const [noteAdd, setNoteAdd] = useState(false);
   const [keyboardOpen, setKeyboardOpen] = useState(undefined);
   const [selectedId, setSelectedId] = useState([])
-useEffect(()=>{
-setData(veri);
-},[veri])
+  const [noteEdit, setNoteEdit] = useState(null);
+
+  useEffect(() => {
+    setData(veri);
+  }, [veri])
+
+
   return (
     <View style={styles.container}>
       <Navi addOrDeleteIcon={addOrDeleteIcon} veri={veri} setVeri={setVeri} selectedId={selectedId} setSelectedId={setSelectedId} noteAdd={noteAdd} setAddOrDeleteIcon={setAddOrDeleteIcon} setNoteAdd={setNoteAdd} style={keyboardOpen ? styles.navigateStyleWithKeyboardOpen : styles.navigate} />
-
       {noteAdd ?
         <NoteAdd veri={veri} setVeri={setVeri} setNoteAdd={setNoteAdd} setKeyboardOpen={setKeyboardOpen} />
         :
         (<View>
           <Input datas={veri} data={data} setData={setData} setKeyboardOpen={setKeyboardOpen} />
-          <ScrollView style={styles.scroll}>
-            <View style={{
-              flexDirection: "row",
-              flexWrap: 'wrap',
-              marginBottom: 130,
-              marginTop: 20,
-            }}>
-              {dataSort(data).map((item) => (
-                <Card setSelectedId={setSelectedId} selectedId={selectedId} addOrDeleteIcon={addOrDeleteIcon} setAddOrDeleteIcon={setAddOrDeleteIcon} key={item.id} item={item} />
-              ))}
-            </View>
-          </ScrollView>
-        </View>
+          {data == null || data == undefined || data.length <= 0 ?
+            <NoNote />
+            :
+            (
+              <ScrollView style={styles.scroll}>
+                <View style={styles.viewForCard}>
+                  {dataSort(data).map((item) => (
+                    <Card setSelectedId={setSelectedId} selectedId={selectedId} addOrDeleteIcon={addOrDeleteIcon}
+                      setAddOrDeleteIcon={setAddOrDeleteIcon} key={item.id} item={item} />
+                  ))}
+                </View>
+              </ScrollView>
+            )
+          }
 
+        </View>
         )
       }
-      <StatusBar style="auto" backgroundColor='#2b90c7'/>
+      <StatusBar style="auto" backgroundColor='#2b90c7' />
     </View>
 
   );
