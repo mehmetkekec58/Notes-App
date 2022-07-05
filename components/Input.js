@@ -2,9 +2,9 @@ import { TextInput, TouchableOpacity, Image } from 'react-native'
 import { styles } from '../Styles';
 import { useState, useEffect } from 'react';
 import { View, Text, Keyboard } from 'react-native';
+import { SEARCH_NOTE } from '../contains/containTexts';
 
 const Input = ({ datas, data, setData, keyboardOpen, setKeyboardOpen }) => {
-
 
     const [inputText, onChangeInputText] = useState(null);
 
@@ -25,7 +25,7 @@ const Input = ({ datas, data, setData, keyboardOpen, setKeyboardOpen }) => {
     useEffect(() => {
         if (inputText == null || inputText == undefined || inputText == "") {
             setData(datas)
-       
+
         } else {
             let array = []
             datas.map((e) => {
@@ -34,7 +34,6 @@ const Input = ({ datas, data, setData, keyboardOpen, setKeyboardOpen }) => {
                 }
             })
             setData(array)
-         
         }
     }, [inputText])
 
@@ -45,10 +44,8 @@ const Input = ({ datas, data, setData, keyboardOpen, setKeyboardOpen }) => {
                 style={styles.input}
                 onChangeText={onChangeInputText}
                 value={inputText}
-              
-                placeholder="Not Ara"
+                placeholder={SEARCH_NOTE}
                 onSubmitEditing={Keyboard.dismiss} />
-         
         </View>
     )
 }

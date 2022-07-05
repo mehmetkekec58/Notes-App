@@ -22,7 +22,7 @@ const Card = ({ item, setSelectedId, selectedId, setAddOrDeleteIcon, addOrDelete
         if (addOrDeleteIcon) {
 
         } else {
-          
+
             if (selectedId.includes(id)) {
                 setSelectedId(selectedId.filter((e) => (e !== id)));
 
