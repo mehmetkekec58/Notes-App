@@ -30,16 +30,12 @@ const NoteAdd = ({ veri, setVeri, setNoteAdd, keyboardOpen, setKeyboardOpen }) =
         setNoteAdd(false)
     }
     const handleSave = () => {
-        if(inputText == null || inputText==undefined|| inputText.length<=0){
+        if (inputText == null || inputText == undefined || inputText.length <= 0) {
             return;
         }
-        
-        let array = veri;
-        array[array==null || array==undefined ? 0 :array.length] = { id: generateId(array), message: inputText, color: randomColor() };
-        setVeri(array)
+        setVeri([...veri, { id: generateId(veri), message: inputText, color: randomColor() }])
         handleCancel();
     }
-
 
     return (
         <View style={{ display: 'flex' }}>
@@ -51,10 +47,7 @@ const NoteAdd = ({ veri, setVeri, setNoteAdd, keyboardOpen, setKeyboardOpen }) =
                 value={inputText}
                 placeholder={WRITE_TEXT}
                 onSubmitEditing={Keyboard.dismiss} />
-            <View style={{
-                flexDirection: "row",
-                flexWrap: 'wrap', left: '3%'
-            }}>
+            <View style={styles.noteSaveButtonsView}>
                 <TouchableOpacity onPress={handleCancel} style={styles.cancelButton}>
                     <Image style={styles.image} source={require(crossIcon)} />
                     <Text>{CANCEL}</Text>
