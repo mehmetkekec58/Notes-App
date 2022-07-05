@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     right: '39%',
-    bottom:3,
+    bottom: 3,
     marginLeft: 40,
     fontSize: 20,
   },
@@ -117,22 +117,26 @@ export const styles = StyleSheet.create({
     paddingRight: 10,
     paddingBottom: 100,
     borderRadius: 20,
+    height: '100%',
     backgroundColor: '#f0eef0',
 
   },
-  searchImage: {
+  noteSaveButtonsView: {
+    flexDirection: "row",
+    flexWrap: 'wrap',
+    left: '3%'
 
   },
   addNoteInput: {
     height: '70%',
     width: "90%",
     margin: 20,
-   textAlign:'left',
+    textAlign: 'left',
     borderWidth: 1,
     borderRadius: 8,
-    textAlignVertical:'top',
+    textAlignVertical: 'top',
     padding: 10,
-   
+
   },
   saveButton: {
     backgroundColor: '#8bd35c',
@@ -140,36 +144,71 @@ export const styles = StyleSheet.create({
     width: '40%',
     borderRadius: 8,
     margin: 10,
-    padding:8,
-    alignItems:'center',
+    padding: 8,
+    alignItems: 'center',
     shadowColor: "black",
     shadowOffset: {
-        width: 0,
-        height: 5,
+      width: 0,
+      height: 5,
     },
     shadowOpacity: '0.9',
     shadowRadius: 15.19,
-
     elevation: 23,
-    
+
   },
   cancelButton: {
     backgroundColor: '#df4d60',
     height: '70%',
     width: '40%',
     margin: 10,
-
     borderRadius: 8,
-    padding:8,
-    alignItems:'center',
+    padding: 8,
+    alignItems: 'center',
     shadowColor: "black",
     shadowOffset: {
-        width: 0,
-        height: 5,
+      width: 0,
+      height: 5,
     },
     shadowOpacity: '0.9',
     shadowRadius: 15.19,
-
     elevation: 23,
+  },
+  viewForCard: {
+    flexDirection: "row",
+    flexWrap: 'wrap',
+    marginBottom: 130,
+    marginTop: 20,
+  },
+  boxIcon: {
+    height: 100,
+    width: 100,
+    top: 120,
+  },
+  noNoteText: {
+    fontSize: 30,
+    textAlign: 'center',
+    textTransform: 'uppercase',
+    top: 265
+  },
+  noNoteView: {
+    height: "100%",
+    alignContent: 'center',
+    alignItems: 'center',
+    marginTop: 20
+  },
+  allSelectModeText: {
+    color: 'black',
+    alignItems: 'center',
+    width: 150,
+    fontSize: 15,
+
+
+  },
+  allSelectButton: {
+    right: 90,
+    top: 20,
+    borderRadius: 15,
+    padding: 5,
+
   }
 });
