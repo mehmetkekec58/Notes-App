@@ -128,8 +128,9 @@ export const styles = StyleSheet.create({
 
   },
   addNoteInput: {
-    height: '70%',
+    height: '68%',
     width: "90%",
+    marginTop: 10,
     margin: 20,
     textAlign: 'left',
     borderWidth: 1,
@@ -210,5 +211,11 @@ export const styles = StyleSheet.create({
     borderRadius: 15,
     padding: 5,
 
+  },
+  noteEditDateText: {
+    fontSize: 13,
+    fontWeight: 'bold',
+    left: 20,
+    top:9,
   }
 });
