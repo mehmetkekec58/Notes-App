@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { BRAND_NAME, CANCEL, DROP_ALL, SELECT_ALL } from '../contains/containTexts';
 import { styles } from '../Styles';
@@ -6,19 +6,20 @@ import { styles } from '../Styles';
 const deleteIcon = "../assets/images/delete-button.png";
 const addButtonIcon = "../assets/images/addicon.png";
 
-const Navi = ({ veri, setVeri, setSelectedId, selectedId, addOrDeleteIcon, setAddOrDeleteIcon, setNoteAdd, noteAdd, style }) => {
+const Navi = ({ props, style }) => {
+    const { data, veri, setVeri, setSelectedId, selectedId, addOrDeleteIcon, setAddOrDeleteIcon, setNoteAdd, noteAdd } = props
     const [allSelectMode, setAllSelectMode] = useState(true)
+
+    useEffect(() => {
+        setAllSelectMode(allCount() == selectedCount() ? false : true)
+    }, [selectedId])
+
     const handleAddTextPage = () => {
         setNoteAdd(true)
     }
     const handleDelete = () => {
-        if (selectedId == null || selectedId == undefined || selectedId.length <= 0) {
-            setAddOrDeleteIcon(true);
-            return;
-        }
         setVeri(deleteData(selectedId, veri))
         setAddOrDeleteIcon(true);
-
     }
     function deleteData(selectId, data) {
         let array = [];
@@ -41,29 +42,28 @@ const Navi = ({ veri, setVeri, setSelectedId, selectedId, addOrDeleteIcon, setAd
         return selectedId.length;
     }
     function allCount() {
-        return veri.length;
+        return data.length;
     }
     function selectAll() {
         if (allSelectMode) {
-            setSelectedId(veri.map((e) => (e.id)))
+            setSelectedId(data.map((e) => (e.id)))
             setAllSelectMode(false)
         } else {
             setSelectedId([])
             setAllSelectMode(true)
         }
-
     }
     return (
         <View style={style}>
 
             <View>
                 {addOrDeleteIcon ? <Text style={noteAdd ? styles.naviBrandWithNoteAdd : styles.naviBrand}>{BRAND_NAME}</Text> :
-                    <TouchableOpacity style={styles.allSelectButton} onPress={selectAll}><Text style={styles.allSelectModeText}>{allSelectMode ? SELECT_ALL : DROP_ALL} ({selectedCount()}/{allCount()})</Text></TouchableOpacity>}
+                    <TouchableOpacity style={styles.allSelectButton} onPress={() => selectAll()}><Text style={styles.allSelectModeText}>{allSelectMode ? SELECT_ALL : DROP_ALL} ({selectedCount()}/{allCount()})</Text></TouchableOpacity>}
             </View>
             {noteAdd ? null :
                 <View>
 
-                    <TouchableOpacity onPress={addOrDeleteIcon ? handleAddTextPage : handleDelete} style={styles.naviButton}>
+                    <TouchableOpacity onPress={() => addOrDeleteIcon ? handleAddTextPage() : handleDelete()} style={styles.naviButton}>
                         {addOrDeleteIcon ? <Image style={styles.image} source={require(addButtonIcon)} /> :
                             <View>
 
