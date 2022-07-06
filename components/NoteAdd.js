@@ -8,9 +8,11 @@ import { SAVE, CANCEL, WRITE_TEXT } from '../contains/containTexts';
 const crossIcon = "../assets/images/cross.png";
 const tickIcon = "../assets/images/tick.png";
 
-const NoteAdd = ({ veri, setVeri, setNoteAdd, keyboardOpen, setKeyboardOpen }) => {
+const NoteAdd = ({ props }) => {
 
-    const [inputText, onChangeInputText] = useState(null);
+    const { noteEdit, setNoteEdit, veri, setVeri, setNoteAdd, setKeyboardOpen } = props
+
+    const [inputText, onChangeInputText] = useState(noteEdit != null ? noteEdit.message : "");
 
     useEffect(() => {
         const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
@@ -28,9 +30,17 @@ const NoteAdd = ({ veri, setVeri, setNoteAdd, keyboardOpen, setKeyboardOpen }) =
 
     const handleCancel = () => {
         setNoteAdd(false)
+        if (noteEdit != null) {
+            setNoteEdit(null)
+        }
     }
     const handleSave = () => {
         if (inputText == null || inputText == undefined || inputText.length <= 0) {
+            return;
+        }
+        if (noteEdit != null) {
+            setVeri(veri.map((e) => e.id === noteEdit.id ? { id: noteEdit.id, message: inputText, color: noteEdit.color } : e))
+            setNoteEdit(null);
             return;
         }
         setVeri([...veri, { id: generateId(veri), message: inputText, color: randomColor() }])
@@ -48,12 +58,12 @@ const NoteAdd = ({ veri, setVeri, setNoteAdd, keyboardOpen, setKeyboardOpen }) =
                 placeholder={WRITE_TEXT}
                 onSubmitEditing={Keyboard.dismiss} />
             <View style={styles.noteSaveButtonsView}>
-                <TouchableOpacity onPress={handleCancel} style={styles.cancelButton}>
+                <TouchableOpacity onPress={() => handleCancel()} style={styles.cancelButton}>
                     <Image style={styles.image} source={require(crossIcon)} />
                     <Text>{CANCEL}</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={handleSave} style={styles.saveButton}>
+                <TouchableOpacity onPress={() => handleSave()} style={styles.saveButton}>
                     <Image style={styles.image} source={require(tickIcon)} />
                     <Text>{SAVE}</Text>
                 </TouchableOpacity>
