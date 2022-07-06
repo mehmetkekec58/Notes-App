@@ -83,12 +83,12 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Navi addOrDeleteIcon={addOrDeleteIcon} veri={veri} setVeri={setVeri} selectedId={selectedId} setSelectedId={setSelectedId} noteAdd={noteAdd} setAddOrDeleteIcon={setAddOrDeleteIcon} setNoteAdd={setNoteAdd} style={keyboardOpen ? styles.navigateStyleWithKeyboardOpen : styles.navigate} />
-      {noteAdd ?
-        <NoteAdd veri={veri} setVeri={setVeri} setNoteAdd={setNoteAdd} setKeyboardOpen={setKeyboardOpen} />
+      <Navi props={{ data: data, veri: veri, setVeri: setVeri, setSelectedId: setSelectedId, selectedId: selectedId, addOrDeleteIcon: addOrDeleteIcon, setAddOrDeleteIcon: setAddOrDeleteIcon, setNoteAdd: setNoteAdd, noteAdd: noteAdd }} style={keyboardOpen ? styles.navigateStyleWithKeyboardOpen : styles.navigate} />
+      {noteAdd || noteEdit != null ?
+        <NoteAdd props={{ noteEdit: noteEdit, setNoteEdit: setNoteEdit, veri: veri, setVeri: setVeri, setNoteAdd: setNoteAdd, keyBoardOpen: keyboardOpen, setKeyboardOpen: setKeyboardOpen }} />
         :
         (<View>
-          <Input datas={veri} data={data} setData={setData} setKeyboardOpen={setKeyboardOpen} />
+          <Input props={{ datas: veri, data: data, setData: setData, setKeyboardOpen: setKeyboardOpen }} />
           {data == null || data == undefined || data.length <= 0 ?
             <NoNote />
             :
@@ -96,8 +96,7 @@ export default function App() {
               <ScrollView style={styles.scroll}>
                 <View style={styles.viewForCard}>
                   {dataSort(data).map((item) => (
-                    <Card setSelectedId={setSelectedId} selectedId={selectedId} addOrDeleteIcon={addOrDeleteIcon}
-                      setAddOrDeleteIcon={setAddOrDeleteIcon} key={item.id} item={item} />
+                    <Card key={item.id} item={item} props={{ setNoteEdit: setNoteEdit, setSelectedId: setSelectedId, selectedId: selectedId, setAddOrDeleteIcon: setAddOrDeleteIcon, addOrDeleteIcon: addOrDeleteIcon }} />
                   ))}
                 </View>
               </ScrollView>
@@ -109,6 +108,7 @@ export default function App() {
       }
       <StatusBar style="auto" backgroundColor='#2b90c7' />
     </View>
+
 
   );
 }
