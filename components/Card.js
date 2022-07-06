@@ -1,5 +1,5 @@
-import React from 'react'
-import { Text, TouchableOpacity } from 'react-native'
+import { useEffect } from 'react'
+import { Text, TouchableOpacity, BackHandler } from 'react-native'
 import { styles } from '../Styles';
 import selectCharacter from '../helper/selectCharacterHelper';
 
@@ -7,6 +7,27 @@ const Card = ({ item, props }) => {
     const { setNoteEdit, setSelectedId, selectedId, setAddOrDeleteIcon, addOrDeleteIcon } = props
     const { id, message, color } = item
 
+    useEffect(() => {
+
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            cancelDeleteMode
+        );
+
+        return () => backHandler.remove();
+
+
+
+    }, [addOrDeleteIcon]);
+
+    const cancelDeleteMode = () => {
+        if (!addOrDeleteIcon) {
+            setAddOrDeleteIcon(true)
+            return true;
+        } else {
+            BackHandler.exitApp()
+        }
+    }
     const handleLongPress = (id) => {
         if (addOrDeleteIcon) {
             setAddOrDeleteIcon(false)
@@ -18,9 +39,10 @@ const Card = ({ item, props }) => {
 
         }
     }
-    const handlePress = (id, message, color) => {
+    const handlePress = (item) => {
+        const {id} = item
         if (addOrDeleteIcon) {
-            setNoteEdit({ id: id, message: message, color: color });
+            setNoteEdit(item);
         } else {
 
             if (selectedId.includes(id)) {
@@ -43,7 +65,7 @@ const Card = ({ item, props }) => {
     }
 
     return (
-        <TouchableOpacity onLongPress={(e) => handleLongPress(id)} onPress={(e) => handlePress(id, message, color)} style={{
+        <TouchableOpacity onLongPress={(e) => handleLongPress(id)} onPress={(e) => handlePress(item)} style={{
             height: 150,
             width: '45%',
             backgroundColor: color,
