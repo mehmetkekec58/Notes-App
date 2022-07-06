@@ -3,8 +3,8 @@ import { Text, TouchableOpacity } from 'react-native'
 import { styles } from '../Styles';
 import selectCharacter from '../helper/selectCharacterHelper';
 
-const Card = ({ item, setSelectedId, selectedId, setAddOrDeleteIcon, addOrDeleteIcon }) => {
-
+const Card = ({ item, props }) => {
+    const { setNoteEdit, setSelectedId, selectedId, setAddOrDeleteIcon, addOrDeleteIcon } = props
     const { id, message, color } = item
 
     const handleLongPress = (id) => {
@@ -18,13 +18,17 @@ const Card = ({ item, setSelectedId, selectedId, setAddOrDeleteIcon, addOrDelete
 
         }
     }
-    const handlePress = (id) => {
+    const handlePress = (id, message, color) => {
         if (addOrDeleteIcon) {
-
+            setNoteEdit({ id: id, message: message, color: color });
         } else {
 
             if (selectedId.includes(id)) {
                 setSelectedId(selectedId.filter((e) => (e !== id)));
+                if (selectedId.length - 1 == 0) {
+                    setAddOrDeleteIcon(true)
+                    return;
+                }
 
             } else {
                 setSelectedId([...selectedId, id]);
@@ -39,7 +43,7 @@ const Card = ({ item, setSelectedId, selectedId, setAddOrDeleteIcon, addOrDelete
     }
 
     return (
-        <TouchableOpacity onLongPress={(e) => handleLongPress(id)} onPress={(e) => handlePress(id)} style={{
+        <TouchableOpacity onLongPress={(e) => handleLongPress(id)} onPress={(e) => handlePress(id, message, color)} style={{
             height: 150,
             width: '45%',
             backgroundColor: color,
@@ -57,7 +61,6 @@ const Card = ({ item, setSelectedId, selectedId, setAddOrDeleteIcon, addOrDelete
             },
             shadowOpacity: '0.9',
             shadowRadius: 15.19,
-
             elevation: 23,
 
         }}>
