@@ -7,7 +7,7 @@ const deleteIcon = "../assets/images/delete-button.png";
 const addButtonIcon = "../assets/images/addicon.png";
 
 const Navi = ({ props, style }) => {
-    const { data, veri, setVeri, setSelectedId, selectedId, addOrDeleteIcon, setAddOrDeleteIcon, setNoteAdd, noteAdd } = props
+    const { data, veri, noteEdit, setVeri, setSelectedId, selectedId, addOrDeleteIcon, setAddOrDeleteIcon, setNoteAdd, noteAdd } = props
     const [allSelectMode, setAllSelectMode] = useState(true)
 
     useEffect(() => {
@@ -57,10 +57,10 @@ const Navi = ({ props, style }) => {
         <View style={style}>
 
             <View>
-                {addOrDeleteIcon ? <Text style={noteAdd ? styles.naviBrandWithNoteAdd : styles.naviBrand}>{BRAND_NAME}</Text> :
+                {addOrDeleteIcon ? <Text style={noteAdd || noteEdit != null ? styles.naviBrandWithNoteAdd : styles.naviBrand}>{BRAND_NAME}</Text> :
                     <TouchableOpacity style={styles.allSelectButton} onPress={() => selectAll()}><Text style={styles.allSelectModeText}>{allSelectMode ? SELECT_ALL : DROP_ALL} ({selectedCount()}/{allCount()})</Text></TouchableOpacity>}
             </View>
-            {noteAdd ? null :
+            {noteAdd || noteEdit != null ? null :
                 <View>
 
                     <TouchableOpacity onPress={() => addOrDeleteIcon ? handleAddTextPage() : handleDelete()} style={styles.naviButton}>
