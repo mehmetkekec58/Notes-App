@@ -6,3 +6,6 @@ export const NO_NOTE = "Not Bulunamadı";
 export const SEARCH_NOTE = "Not Ara";
 export const SELECT_ALL = "Tümünü Seç";
 export const DROP_ALL = "Tümünü Bırak";
+export const ALERT_CANCEL = "İptal Et!";
+export const ALERT_CANCEL_BODY_TEXT = "İptal etmek istediğinize emin misiniz?";
+export const YES = "Evet";
