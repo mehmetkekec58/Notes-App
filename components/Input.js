@@ -1,11 +1,11 @@
 import { TextInput, TouchableOpacity, Image } from 'react-native'
 import { styles } from '../Styles';
 import { useState, useEffect } from 'react';
-import { View, Text, Keyboard } from 'react-native';
+import { View, Keyboard } from 'react-native';
 import { SEARCH_NOTE } from '../contains/containTexts';
 
-const Input = ({ datas, data, setData, keyboardOpen, setKeyboardOpen }) => {
-
+const Input = ({ props }) => {
+    const { datas, setData, setKeyboardOpen } = props
     const [inputText, onChangeInputText] = useState(null);
 
     useEffect(() => {
@@ -36,7 +36,6 @@ const Input = ({ datas, data, setData, keyboardOpen, setKeyboardOpen }) => {
             setData(array)
         }
     }, [inputText])
-
 
     return (
         <View>
