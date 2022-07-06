@@ -6,7 +6,7 @@ import randomColor from '../helper/randomColorHelper';
 import generateId from '../helper/generateIdHelper';
 import { SAVE, CANCEL, WRITE_TEXT, ALERT_CANCEL, ALERT_CANCEL_BODY_TEXT, YES } from '../contains/containTexts';
 import date from '../helper/dateHelper';
-import RadioColorButton from './RadioColorButton';
+
 const crossIcon = "../assets/images/cross.png";
 const tickIcon = "../assets/images/tick.png";
 
