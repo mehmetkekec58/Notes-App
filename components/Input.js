@@ -5,7 +5,7 @@ import { View, Keyboard } from 'react-native';
 import { SEARCH_NOTE } from '../contains/containTexts';
 
 const Input = ({ props }) => {
-    const { datas, setData, setKeyboardOpen } = props
+    const { datas, setData, setKeyboardOpen, setSelectedId, selectedId } = props
     const [inputText, onChangeInputText] = useState(null);
 
     useEffect(() => {
@@ -23,6 +23,9 @@ const Input = ({ props }) => {
     }, []);
 
     useEffect(() => {
+        if (selectedId.length != 0) {
+            setSelectedId([])
+        }
         if (inputText == null || inputText == undefined || inputText == "") {
             setData(datas)
 
