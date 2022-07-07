@@ -6,6 +6,9 @@ import randomColor from '../helper/randomColorHelper';
 import generateId from '../helper/generateIdHelper';
 import { SAVE, CANCEL, WRITE_TEXT, ALERT_CANCEL, ALERT_CANCEL_BODY_TEXT, YES } from '../contains/containTexts';
 import date from '../helper/dateHelper';
+import RadioColorButton from './RadioColorButton';
+import { COLOR_LIST } from '../contains/colors';
+import { retrieveData, storeData } from '../services/asyncStorageService';
 
 const crossIcon = "../assets/images/cross.png";
 const tickIcon = "../assets/images/tick.png";
@@ -15,6 +18,7 @@ const NoteAdd = ({ props }) => {
     const { noteEdit, setNoteEdit, veri, setVeri, setNoteAdd, setKeyboardOpen } = props
 
     const [inputText, onChangeInputText] = useState(noteEdit != null ? noteEdit.message : "");
+    const [selectColor, setSelectColor] = useState(noteEdit != null ? noteEdit.color : COLOR_LIST[0]);
 
     useEffect(() => {
         const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
@@ -32,14 +36,13 @@ const NoteAdd = ({ props }) => {
 
     useEffect(() => {
 
-
         const backHandler = BackHandler.addEventListener(
             "hardwareBackPress",
             backAction
         );
 
         return () => backHandler.remove();
-    }, []);
+    }, [inputText]);
 
 
     const backAction = () => {
@@ -69,11 +72,13 @@ const NoteAdd = ({ props }) => {
             return;
         }
         if (noteEdit != null) {
-            setVeri(veri.map((e) => e.id === noteEdit.id ? { id: noteEdit.id, message: inputText, color: noteEdit.color, date: date() } : e))
+            setVeri(veri.map((note) => note.id === noteEdit.id ? { id: noteEdit.id, message: inputText, color: selectColor, date: date() } : note))
+            storeData("notes", veri)
             setNoteEdit(null);
             return;
         }
-        setVeri([...veri, { id: generateId(veri), message: inputText, color: randomColor(), date: date() }])
+        setVeri([...veri, { id: generateId(veri), message: inputText, color: selectColor, date: date() }])
+        storeData("notes", veri)
         handleCancel();
     }
 
@@ -99,6 +104,7 @@ const NoteAdd = ({ props }) => {
                     <Text>{SAVE}</Text>
                 </TouchableOpacity>
             </View>
+            <RadioColorButton props={{ selectColor: selectColor, setSelectColor: setSelectColor }} />
         </View>
     )
 }
