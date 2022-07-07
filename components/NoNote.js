@@ -1,5 +1,5 @@
 import { Text, View, Image } from "react-native"
-import { NO_NOTE } from "../contains/containTexts"
+import { NOTE_NOT_FOUND } from "../contains/containTexts"
 import { styles } from "../Styles"
 
 const boxIcon = "../assets/images/box.png"
@@ -7,7 +7,7 @@ const boxIcon = "../assets/images/box.png"
 const NoNote = () => {
     return (
         <View style={styles.noNoteView}>
-            <Text style={styles.noNoteText}>{NO_NOTE}</Text>
+            <Text style={styles.noNoteText}>{NOTE_NOT_FOUND}</Text>
             <Image style={styles.boxIcon} source={require(boxIcon)} />
         </View>
     )
