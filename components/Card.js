@@ -16,8 +16,6 @@ const Card = ({ item, props }) => {
 
         return () => backHandler.remove();
 
-
-
     }, [addOrDeleteIcon]);
 
     const cancelDeleteMode = () => {
@@ -40,7 +38,7 @@ const Card = ({ item, props }) => {
         }
     }
     const handlePress = (item) => {
-        const {id} = item
+        const { id } = item
         if (addOrDeleteIcon) {
             setNoteEdit(item);
         } else {
@@ -63,6 +61,7 @@ const Card = ({ item, props }) => {
     function handleSelectForDelete(selectId, id) {
         return selectId.includes(id);
     }
+
 
     return (
         <TouchableOpacity onLongPress={(e) => handleLongPress(id)} onPress={(e) => handlePress(item)} style={{
