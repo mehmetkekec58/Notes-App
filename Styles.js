@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    paddingTop: 30,
+    paddingTop: 20,
 
   },
   navigate: {
@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     right: '39%',
-    top: '63%',
+    top: '84%',
     marginLeft: 40,
     fontSize: 20,
 
@@ -39,6 +39,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     right: '39%',
+    top:"10%",
     bottom: 3,
     marginLeft: 40,
     fontSize: 20,
@@ -56,7 +57,7 @@ export const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 5,
     left: '44%',
-    bottom: 15,
+    bottom: 10,
     fontSize: 15,
     backgroundColor: 'rgb(0,0,0,0)',
 
@@ -128,7 +129,7 @@ export const styles = StyleSheet.create({
 
   },
   addNoteInput: {
-    height: '68%',
+    height: '60%',
     width: "90%",
     marginTop: 10,
     margin: 20,
