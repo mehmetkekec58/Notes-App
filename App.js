@@ -10,73 +10,6 @@ import dataSort from './helper/dataSortHelper';
 import NoNote from './components/NoNote';
 import { retrieveData, storeData } from './services/asyncStorageService';
 
-const datas = [
-  {
-    id: 0,
-    message: "selam dünya",
-    color: '#e95692',
-    date: '06/06/2022 - 23:06',
-  },
-  {
-    id: 1,
-    message: "React ile geliştirilecek sistem component’lerden oluşur. Her component kendi içinde kullanacağı veriyi ya props üzerinden ya da state üzerinden alarak kullanır",
-    color: '#c78aad',
-    date: '06/06/2022 - 23:06',
-  },
-  {
-    id: 2,
-    message: "Konu tercihlerle ilişkili bir konu, eğer react dünyasının getirdiklerini standart bir yaklaşımla kullanmak isterseniz bence değiyor",
-    color: '#e1a69e',
-    date: '06/06/2022 - 23:06',
-  },
-  {
-    id: 3,
-    message: "Hello World",
-    color: 'grey',
-    date: '06/06/2022 - 23:06',
-  },
-  {
-    id: 4,
-    message: "Redux yapısını kullanacaksanız, öncelikle Redux Dev Tool’un chrome extension’ı kurmanızı tavsiye ederim",
-    color: '#f2f2f2',
-    date: '06/06/2022 - 23:06',
-  },
-  {
-    id: 5,
-    message: "Redux yapısını kullanacaksanız, öncelikle Redux Dev Tool’un chrome extension’ı kurmanızı tavsiye ederim",
-    color: 'brown',
-    date: '06/06/2022 - 23:06',
-  },
-
-  {
-    id: 6,
-    message: "Redux yapısını kullanacaksanız, öncelikle Redux Dev Tool’un chrome extension’ı kurmanızı tavsiye ederim",
-    color: 'lightblue',
-    date: '06/06/2022 - 23:06',
-  },
-
-  {
-    id: 7,
-    message: "Redux yapısını kullanacaksanız, öncelikle Redux Dev Tool’un chrome extension’ı kurmanızı tavsiye ederim",
-    color: '#00FF00',
-    date: '06/06/2022 - 23:06',
-  },
-  {
-    id: 8,
-    message: "Hello World",
-    color: 'yellow',
-    date: '06/06/2022 - 23:06',
-  },
-  {
-    id: 9,
-    message: "Bilgiye ulaşmanın hem çok kolay hem de çok zor olduğu şu son zamanlarda, insanların bilgi ihtiyacını karşılamak için ille de basılı kaynaklara yönelmelerini beklemek oldukça yanlış bir düşünce biçimidir.",
-    color: 'yellow',
-    date: '06/06/2022 - 23:06',
-  },
-]
-
-
-
 export default function App() {
 
   const [veri, setVeri] = useState([])
@@ -91,7 +24,7 @@ export default function App() {
   useEffect(() => {
     if (isLoading != true) {
       retrieve()
-        setIsLoading(true);
+      setIsLoading(true);
 
     }
     setData(veri);
@@ -100,8 +33,8 @@ export default function App() {
   }, [veri])
 
 
-  const retrieve = async() => {
-   await retrieveData("notes", setVeri)
+  const retrieve = async () => {
+    await retrieveData("notes", setVeri)
   }
 
 
