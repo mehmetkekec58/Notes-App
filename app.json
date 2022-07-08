@@ -1,13 +1,14 @@
 {
   "expo": {
-    "name": "notes-app",
+    "name": "Notes App",
     "slug": "notes-app",
     "version": "1.0.0",
+    "owner": "mehmetkekec",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash-with-logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,9 +23,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.mehmetkekec.notesapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
