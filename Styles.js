@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     right: '39%',
-    top:"10%",
+    top: "10%",
     bottom: 3,
     marginLeft: 40,
     fontSize: 20,
@@ -217,6 +217,7 @@ export const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: 'bold',
     left: 20,
-    top:9,
-  }
+    top: 9,
+  },
+
 });
