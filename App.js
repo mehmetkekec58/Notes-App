@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { View, ScrollView, Text } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import Card from './components/Card';
 import Input from './components/Input';
 import Navi from './components/Navi';
@@ -8,7 +8,7 @@ import NoteAdd from './components/NoteAdd';
 import { styles } from './Styles';
 import dataSort from './helper/dataSortHelper';
 import NoNote from './components/NoNote';
-import { aa, retrieveData, storeData } from './services/asyncStorageService';
+import { retrieveData, storeData } from './services/asyncStorageService';
 
 const datas = [
   {
@@ -78,9 +78,9 @@ const datas = [
 
 
 export default function App() {
- 
-  const [veri, setVeri] = useState([])
 
+  const [veri, setVeri] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
   const [addOrDeleteIcon, setAddOrDeleteIcon] = useState(true);
   const [data, setData] = useState(veri);
   const [noteAdd, setNoteAdd] = useState(false);
@@ -89,18 +89,20 @@ export default function App() {
   const [noteEdit, setNoteEdit] = useState(null);
 
   useEffect(() => {
-    if (veri.length == 0) {
-      retrieve();
+    if (isLoading != true) {
+      retrieve()
+        setIsLoading(true);
+
     }
     setData(veri);
+    storeData("notes", JSON.stringify(veri));
 
   }, [veri])
 
 
-  const retrieve = async () => {
-    await retrieveData("notes", setVeri)
+  const retrieve = async() => {
+   await retrieveData("notes", setVeri)
   }
-
 
 
   return (
