@@ -73,12 +73,12 @@ const NoteAdd = ({ props }) => {
         }
         if (noteEdit != null) {
             setVeri(veri.map((note) => note.id === noteEdit.id ? { id: noteEdit.id, message: inputText, color: selectColor, date: date() } : note))
-            storeData("notes", veri)
+ 
             setNoteEdit(null);
             return;
         }
         setVeri([...veri, { id: generateId(veri), message: inputText, color: selectColor, date: date() }])
-        storeData("notes", veri)
+       
         handleCancel();
     }
 
