@@ -2,13 +2,11 @@
 import { useState, useEffect } from 'react';
 import { View, Text, Keyboard, TextInput, TouchableOpacity, Image, BackHandler, Alert } from 'react-native'
 import { styles } from '../Styles';
-import randomColor from '../helper/randomColorHelper';
 import generateId from '../helper/generateIdHelper';
 import { SAVE, CANCEL, WRITE_TEXT, ALERT_CANCEL, ALERT_CANCEL_BODY_TEXT, YES } from '../contains/containTexts';
 import date from '../helper/dateHelper';
 import RadioColorButton from './RadioColorButton';
 import { COLOR_LIST } from '../contains/colors';
-import { retrieveData, storeData } from '../services/asyncStorageService';
 
 const crossIcon = "../assets/images/cross.png";
 const tickIcon = "../assets/images/tick.png";

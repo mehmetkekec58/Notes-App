@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Text, View, Image, TouchableOpacity } from 'react-native';
-import { BRAND_NAME, CANCEL, DROP_ALL, SELECT_ALL } from '../contains/containTexts';
+import { BRAND_NAME, DROP_ALL, SELECT_ALL } from '../contains/containTexts';
 import { styles } from '../Styles';
 
 const deleteIcon = "../assets/images/delete-button.png";
