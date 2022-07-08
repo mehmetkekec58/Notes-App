@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { BRAND_NAME, CANCEL, DROP_ALL, SELECT_ALL } from '../contains/containTexts';
 import { styles } from '../Styles';
-import { storeData } from '../services/asyncStorageService';
 
 const deleteIcon = "../assets/images/delete-button.png";
 const addButtonIcon = "../assets/images/addicon.png";
@@ -20,7 +19,7 @@ const Navi = ({ props, style }) => {
     }
     const handleDelete = () => {
         setVeri(deleteData(selectedId, veri))
-        storeData("notes", veri)
+       
         setAddOrDeleteIcon(true);
     }
     function deleteData(selectId, data) {
