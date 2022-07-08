@@ -5,9 +5,9 @@
 
 screenshots from App
 
-![alt text](https://github.com/mehmetkekec58/Notes-App/blob/master/screenshots/Screenshot_2022-07-08-21-14-01-245_com.mehmetkekec.notesapp.jpg)
-![alt text](https://github.com/mehmetkekec58/Notes-App/blob/master/screenshots/Screenshot_2022-07-08-21-14-18-378_com.mehmetkekec.notesapp.jpg)
-![alt text](https://github.com/mehmetkekec58/Notes-App/blob/master/screenshots/Screenshot_2022-07-08-21-14-38-868_com.mehmetkekec.notesapp.jpg)
+![](https://github.com/mehmetkekec58/Notes-App/blob/master/screenshots/Screenshot_2022-07-08-21-14-01-245_com.mehmetkekec.notesapp.jpg)
+![](https://github.com/mehmetkekec58/Notes-App/blob/master/screenshots/Screenshot_2022-07-08-21-14-18-378_com.mehmetkekec.notesapp.jpg)
+![](https://github.com/mehmetkekec58/Notes-App/blob/master/screenshots/Screenshot_2022-07-08-21-14-38-868_com.mehmetkekec.notesapp.jpg)
 
 
   
