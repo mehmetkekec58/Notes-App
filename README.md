@@ -27,18 +27,6 @@ you can watch it by clicking on the picture
   
 ## Run it on your computer
 
-Clone the project
-
-```bash
-  git clone https://github.com/mehmetkekec58/Notes-App.git
-```
-
-Go to the project directory
-
-```bash
-  cd Notes-App
-```
-
 Install required packages
 
 ```bash
@@ -53,7 +41,7 @@ Run the server
 
 ## Download APK
 
-[a link](https://github.com/mehmetkekec58/Notes-App/releases/download/v1.0.0/Notes.App.apk)
+[download link](https://github.com/mehmetkekec58/Notes-App/releases/download/v1.0.0/Notes.App.apk)
 
 
 
