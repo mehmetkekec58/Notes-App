@@ -13,24 +13,12 @@ const tickIcon = "../assets/images/tick.png";
 
 const NoteAdd = ({ props }) => {
 
-    const { noteEdit, setNoteEdit, veri, setVeri, setNoteAdd, setKeyboardOpen } = props
+    const { noteEdit, setNoteEdit, veri, setVeri, setNoteAdd } = props
 
     const [inputText, onChangeInputText] = useState(noteEdit != null ? noteEdit.message : "");
     const [selectColor, setSelectColor] = useState(noteEdit != null ? noteEdit.color : COLOR_LIST[0]);
 
-    useEffect(() => {
-        const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
-            setKeyboardOpen(true);
-        });
-        const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
-            setKeyboardOpen(false);
-        });
-
-        return () => {
-            showSubscription.remove();
-            hideSubscription.remove();
-        };
-    }, []);
+    
 
     useEffect(() => {
 
