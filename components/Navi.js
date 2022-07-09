@@ -19,7 +19,6 @@ const Navi = ({ props, style }) => {
     }
     const handleDelete = () => {
         setVeri(deleteData(selectedId, veri))
-       
         setAddOrDeleteIcon(true);
     }
     function deleteData(selectId, data) {
@@ -48,10 +47,8 @@ const Navi = ({ props, style }) => {
     function selectAll() {
         if (allSelectMode) {
             setSelectedId(data.map((e) => (e.id)))
-            setAllSelectMode(false)
         } else {
             setSelectedId([])
-            setAllSelectMode(true)
         }
     }
     return (
