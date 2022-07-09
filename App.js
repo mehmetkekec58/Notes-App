@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, Keyboard } from 'react-native';
 import Card from './components/Card';
 import Input from './components/Input';
 import Navi from './components/Navi';
@@ -33,6 +33,22 @@ export default function App() {
   }, [veri])
 
 
+
+  useEffect(() => {
+    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+      setKeyboardOpen(true);
+    });
+    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+      setKeyboardOpen(false);
+    });
+
+    return () => {
+      showSubscription.remove();
+      hideSubscription.remove();
+    };
+  }, []);
+
+
   const retrieve = async () => {
     await retrieveData("notes", setVeri)
   }
@@ -42,10 +58,10 @@ export default function App() {
     <View style={styles.container}>
       <Navi props={{ data: data, noteEdit: noteEdit, veri: veri, setVeri: setVeri, setSelectedId: setSelectedId, selectedId: selectedId, addOrDeleteIcon: addOrDeleteIcon, setAddOrDeleteIcon: setAddOrDeleteIcon, setNoteAdd: setNoteAdd, noteAdd: noteAdd }} style={keyboardOpen ? styles.navigateStyleWithKeyboardOpen : styles.navigate} />
       {noteAdd || noteEdit != null ?
-        <NoteAdd props={{ noteEdit: noteEdit, setNoteEdit: setNoteEdit, veri: veri, setVeri: setVeri, setNoteAdd: setNoteAdd, keyBoardOpen: keyboardOpen, setKeyboardOpen: setKeyboardOpen }} />
+        <NoteAdd props={{ noteEdit: noteEdit, setNoteEdit: setNoteEdit, veri: veri, setVeri: setVeri, setNoteAdd: setNoteAdd }} />
         :
         (<View>
-          <Input props={{ setSelectedId: setSelectedId, selectedId: selectedId, datas: veri, data: data, setData: setData, setKeyboardOpen: setKeyboardOpen }} />
+          <Input props={{ setSelectedId: setSelectedId, selectedId: selectedId, datas: veri, data: data, setData: setData}} />
           {data == null || data == undefined || data.length <= 0 ?
             <NoNote />
             :
@@ -59,7 +75,6 @@ export default function App() {
               </ScrollView>
             )
           }
-
         </View>
         )
       }
