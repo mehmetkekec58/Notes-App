@@ -1,47 +1,39 @@
-import { StyleSheet } from 'react-native';
-
+import { StyleSheet, Platform, StatusBar } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    paddingTop: 20,
-
+    paddingTop: 0,
   },
   navigate: {
     width: '100%',
     backgroundColor: "#2b90c8",
-    height: "7%",
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingLeft: 12,
-    paddingRight: 20,
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     shadowColor: "black",
     shadowOffset: {
       width: 0,
       height: 3,
     },
-    shadowOpacity: '0.9',
-    shadowRadius: 15.19,
-    elevation: 23,
-
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  navigateContent: {
+    height: 56,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
   },
   naviBrand: {
     fontWeight: 'bold',
     color: 'white',
-    right: '39%',
-    top: '84%',
-    marginLeft: 40,
     fontSize: 20,
-
   },
   naviBrandWithNoteAdd: {
     fontWeight: 'bold',
     color: 'white',
-    right: '39%',
-    top: "10%",
-    bottom: 3,
-    marginLeft: 40,
     fontSize: 20,
   },
   login: {
@@ -50,23 +42,15 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 5,
     padding: 5,
-
   },
   naviButton: {
-    backgroundColor: 'white',
-    padding: 5,
-    borderRadius: 5,
-    left: '44%',
-    bottom: 10,
-    fontSize: 15,
-    backgroundColor: 'rgb(0,0,0,0)',
-
+    padding: 6,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-
   image: {
     width: 30,
     height: 30,
-
   },
   input: {
     height: 45,
@@ -77,8 +61,7 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 10,
   },
-  inputButton:
-  {
+  inputButton: {
     backgroundColor: 'white',
     width: '12%',
     borderColor: '#000',
@@ -94,16 +77,11 @@ export const styles = StyleSheet.create({
   addButton: {
     top: 5,
     left: '35%',
-
   },
   navigateStyleWithKeyboardOpen: {
     width: '100%',
     backgroundColor: "#2b90c8",
-    height: "10%",
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
   cardText: {
     margin: 2,
@@ -120,13 +98,11 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     height: '100%',
     backgroundColor: '#f0eef0',
-
   },
   noteSaveButtonsView: {
     flexDirection: "row",
     flexWrap: 'wrap',
-    left: '3%'
-
+    left: '3%',
   },
   addNoteInput: {
     height: '60%',
@@ -138,7 +114,6 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     textAlignVertical: 'top',
     padding: 10,
-
   },
   saveButton: {
     backgroundColor: '#8bd35c',
@@ -153,10 +128,9 @@ export const styles = StyleSheet.create({
       width: 0,
       height: 5,
     },
-    shadowOpacity: '0.9',
+    shadowOpacity: 0.9,
     shadowRadius: 15.19,
     elevation: 23,
-
   },
   cancelButton: {
     backgroundColor: '#df4d60',
@@ -171,7 +145,7 @@ export const styles = StyleSheet.create({
       width: 0,
       height: 5,
     },
-    shadowOpacity: '0.9',
+    shadowOpacity: 0.9,
     shadowRadius: 15.19,
     elevation: 23,
   },
@@ -190,28 +164,24 @@ export const styles = StyleSheet.create({
     fontSize: 30,
     textAlign: 'center',
     textTransform: 'uppercase',
-    top: 265
+    top: 265,
   },
   noNoteView: {
     height: "100%",
     alignContent: 'center',
     alignItems: 'center',
-    marginTop: 20
+    marginTop: 20,
   },
   allSelectModeText: {
-    color: 'black',
-    alignItems: 'center',
-    width: 150,
-    fontSize: 15,
-
-
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 14,
   },
   allSelectButton: {
-    right: 90,
-    top: 20,
-    borderRadius: 15,
-    padding: 5,
-
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    backgroundColor: 'rgba(255, 255, 255, 0.25)',
+    borderRadius: 8,
   },
   noteEditDateText: {
     fontSize: 13,
@@ -219,5 +189,4 @@ export const styles = StyleSheet.create({
     left: 20,
     top: 9,
   },
-
 });

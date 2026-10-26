@@ -79,7 +79,7 @@ export default function App() {
         )
       }
 
-      <StatusBar style="auto" backgroundColor='#2b90c7' />
+      <StatusBar style="light" backgroundColor="#2b90c8" />
     </View>
 
 

@@ -2,7 +2,7 @@
   "expo": {
     "name": "Notes App",
     "slug": "notes-app",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "owner": "mehmetkekec",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -26,7 +26,9 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.mehmetkekec.notesapp"
+      "package": "com.mehmetkekec.notesapp",
+      "versionCode": 2,
+      "targetSdkVersion": 35
     },
     "web": {
       "favicon": "./assets/favicon.png"
